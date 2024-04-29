@@ -12,6 +12,7 @@ from cats.configure import (
     config_from_file,
     get_job_info,
     get_location_from_config_or_args,
+    get_runtime_config,
 )
 from cats.constants import MEMORY_POWER_PER_GB
 
@@ -140,3 +141,20 @@ def test_get_jobinfo():
     )
     with pytest.raises(SystemExit):
         get_job_info(args, profiles)
+
+
+@patch("cats.configure.requests")
+def test_get_runtime_config_errors(mock_requests):
+    expected_location = "SW7"
+    mock_requests.get.return_value = Mock(
+        **{
+            "status_code": 200,
+            "json.return_value": {"postal": expected_location},
+        }
+    )
+    # Negative duration
+    args = parse_arguments().parse_args(
+        ["--location", expected_location, "--duration", "-1"]
+    )
+    with pytest.raises(ValueError):
+        get_runtime_config(args)
