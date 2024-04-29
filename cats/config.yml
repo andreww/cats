@@ -13,3 +13,4 @@ profiles:
       model: "AMD EPYC 7763"
       power: 4.4
       nunits: 1
+PUE: 0.8
