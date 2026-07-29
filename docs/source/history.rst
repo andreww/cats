@@ -43,7 +43,9 @@ Funding
 =======
 
 The development of CATS was supported by the Software Sustainability Institute 
-funded by EPSRC, BBSRC, ESRC, NERC, AHRC, STFC and MRC (grant number EP/S021779/1) and UKRI 
-(grant number AH/Z000114/1). Further work was also supported through the NetDRIVE Flexible Fund,
+funded by EPSRC, BBSRC, ESRC, NERC, AHRC, STFC and MRC 
+(grant number `EP/S021779/1 <https://gtr.ukri.org/projects?ref=EP%2FS021779%2F1>`_) and UKRI 
+(grant number `AH/Z000114/1 <https://gtr.ukri.org/projects?ref=AH%2FZ000114%2F1>`_).
+Further work was also supported through the NetDRIVE Flexible Fund,
 which is supported by UKRI as part of the Digital Research Infrastructure programme
-(grant number UKRI910).
+(grant number `UKRI910 <https://gtr.ukri.org/projects?ref=UKRI910>`_).
