@@ -34,3 +34,18 @@ In addition, this work involved an investigation of how similar time-shifting ap
 could be applied to shared computing facilities and the creation of modules implementing the
 same basic approach as that taken by CATS in a form that can be directly plugged into 
 the SLURM scheduler.
+
+Through 2026 support for further development of CATS was provided via the NetDRIVE programme, which
+funded a small community project "A community hackathon to enable green scheduling" as part of their
+second call for community activities.
+
+Funding
+=======
+
+The development of CATS was supported by the Software Sustainability Institute 
+funded by EPSRC, BBSRC, ESRC, NERC, AHRC, STFC and MRC 
+(grant number `EP/S021779/1 <https://gtr.ukri.org/projects?ref=EP%2FS021779%2F1>`_) and UKRI 
+(grant number `AH/Z000114/1 <https://gtr.ukri.org/projects?ref=AH%2FZ000114%2F1>`_).
+Further work was also supported through the NetDRIVE Flexible Fund,
+which is supported by UKRI as part of the Digital Research Infrastructure programme
+(grant number `UKRI910 <https://gtr.ukri.org/projects?ref=UKRI910>`_).
