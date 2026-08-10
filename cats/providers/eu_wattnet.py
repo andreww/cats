@@ -21,6 +21,20 @@ WATTNET_ZONES: set[str] = set(
 
 @provider("wattnet.eu")
 class WattnetEuProvider(BaseProvider):
+    """
+    Experimental provider for the wattnet.eu project API
+
+    This can be used by passing the --api='wattnet.eu' command line
+    argument. The service covers most of Europe with the location specified
+    using a short code that typically refers to a single country. Data has 
+    15 minute resolution and extends 4 days into the future.  
+    
+    Note that this provider is an experimental service and requires authentication.
+    You will need to arrange a user name and password to be set outside of CATS
+    and specify these in two environment variables: CATS_WATTNET_EMAIL and
+    CATS_WATTNET_PASSWORD. CATS arranges to use these to obtain a short term
+    access token.
+    """
     BASE_URL: ClassVar[str] = "https://api.wattnet.eu"
 
     def update_authorization_token(self) -> None:
@@ -81,15 +95,19 @@ class WattnetEuProvider(BaseProvider):
         end_time = start_time + datetime.timedelta(
             minutes=self.get_max_duration_minutes())
         
-        # Build URL
+        # Build URL. Note that because we use timezone aware datetime object
+        # (and force them into UTC) .isoformat() adds +00:00 to the end of 
+        # the times in the URL. This breaks things. Instead we use strftime 
+        # and check that the timezone offset is 0 as needed
+        assert start_time.utcoffset() == datetime.timedelta(0), "Internal timezone error"
         url = (
             f"{self.base_url}/v1/footprints?"
             "footprint_type=carbon&"
             f"zone={location}&"
-            f"start={start_time.isoformat()}&"
-            f"end={end_time.isoformat()}"
+            f"start={start_time.strftime('%Y-%m-%dT%H:%M:%S')}&"
+            f"end={end_time.strftime('%Y-%m-%dT%H:%M:%S')}"
         )
-      
+        self.update_authorization_token()
         headers = {"Authorization": f"Bearer {self.api_key}"}
         response: dict[str, Any] | None = fetch_url(url, headers=headers)
 
