@@ -75,7 +75,7 @@ class WattnetEuProvider(BaseProvider):
     @override
     def get_data(
         self,
-        timestamp: datetime,
+        timestamp: datetime.datetime,
         location: str | None = None,
         metric: str | None = None,
         headers: dict[str, str] | None = None,
@@ -109,8 +109,9 @@ class WattnetEuProvider(BaseProvider):
         )
         self.update_authorization_token()
         headers = {"Authorization": f"Bearer {self.api_key}"}
-        response: dict[str, Any] | None = fetch_url(url, headers=headers)
+        response: list | None = fetch_url(url, headers=headers)
 
+        assert response is not None, "No response" # To catch failed for typing
         # Needs error handling here!
 
         # The "Z" at the end of the format string indicates UTC,
@@ -124,7 +125,7 @@ class WattnetEuProvider(BaseProvider):
                     d[0], datefmt).replace(tzinfo=utc),
                 value=d[1],
             )
-            for d in  response[0]['series'][0]['values']
+            for d in response[0]['series'][0]['values']
         ]
         return Timeseries("Carbon intensity", values=values, unit="gCO2eq/kWh")
         
