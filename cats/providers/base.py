@@ -31,7 +31,9 @@ def fetch_url(url: str, headers: dict[str, str] | None = None) -> Any:
     session = requests_cache.CachedSession("cats_cache", use_temp=True)
     headers = headers or {}
     headers.update(user_agent)
-    return session.get(url, headers=headers).json()  # pyright: ignore[reportUnknownMemberType]
+    response = session.get(url, headers=headers)
+    # Catch errors here too!
+    return response.json() # pyright: ignore[reportUnknownMemberType]
 
 
 class BaseProvider(ABC):

@@ -49,8 +49,13 @@ class WattnetEuProvider(BaseProvider):
         
         NB: the HTTP calls in this method are not cached.
         """
-        email = os.environ['CATS_WATTNET_EMAIL']
-        password = os.environ['CATS_WATTNET_PASSWORD']
+        email = os.environ.get('CATS_WATTNET_EMAIL')
+        password = os.environ.get('CATS_WATTNET_PASSWORD')
+        if (email is None) or (password is None):
+            raise ProviderAuthenticationError(
+                            "CATS_WATTNET_EMAIL and CATS_WATTNET_PASSWORD "
+                            "environment variables must be set for the wattnet provider"
+                        )
         data = {"email": email, "password": password}
         headers = {"Content-Type": "application/json"}
         headers.update(user_agent)
@@ -112,6 +117,9 @@ class WattnetEuProvider(BaseProvider):
         response: list | None = fetch_url(url, headers=headers)
 
         assert response is not None, "No response" # To catch failed for typing
+        # We get an empty list back from the JSON and a status of 200 if the location
+        # does not exist (etc.??) Treat this as a "general" error (as we've already
+        # validated the input?)
         # Needs error handling here!
 
         # The "Z" at the end of the format string indicates UTC,

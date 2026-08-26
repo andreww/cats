@@ -16,6 +16,7 @@ from .exceptions import (
     MissingArgumentError,
     SchedulerError,
     UnsupportedProviderError,
+    ProviderAuthenticationError,
 )
 from .forecast import WindowedForecast
 from .output import CATSOutput
@@ -436,6 +437,8 @@ def main(arguments: list[str] | None = None):
         print(f"Invalid location: {e}")
     except UnsupportedProviderError as e:
         print(f"Unsupported provider: {e}")
+    except ProviderAuthenticationError as e:
+        print(f"Failed to authenticate with data provider: {e}")
     except MissingArgumentError as e:
         print(f"One or more arguments missing: {e}")
     except DurationExceedsWindowError as e:
