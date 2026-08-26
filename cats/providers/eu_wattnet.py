@@ -101,6 +101,8 @@ class WattnetEuProvider(BaseProvider):
         :return: Timeseries as a list of PointEstimate classes
         """
         location = self.validate_location(location)
+        # Use utc
+        timestamp = timestamp.astimezone(datetime.timezone.utc)
         # Sort out the start time for caching
         if timestamp.minute > 45:
             patch_minute = 46
