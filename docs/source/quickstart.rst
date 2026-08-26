@@ -42,6 +42,47 @@ should be transparent to cluster users.
 It will display the time to start the job on standard out and optionally
 some information about the carbon intensity on standard error.
 
+Locations outside Great Britain
+-------------------------------
+
+The default behavior of CATS is to use carbon intensity forecast data provided
+by the National Energy System Operator (NESO), which manages the electricity grid in 
+Great Britain (Northern Ireland uses a separate grid operating across
+the ireland of Ireland). In order to use CATS for locations across Europe
+it is possible to specify a different experimental data source provided by
+the https://wattnet.eu/ project. This provides data at coarser spatial resolution
+(approximately 60 zones across Europe including one representing Great Britain
+compared to 14 areas provided by by the NESO) but at finer time resolution (15
+compared to 30 minutes) and for a longer duration (4 days rather than 2 days).
+To use https://wattnet.eu/ the `--location` argument **must** be provided and must be the 
+name of a zone. In addition the `--api` argument needs to have the value "wattnet.eu"
+and your personal wattnet password and email address combination must be provided via
+environment variables. The example above is thus changed to:
+
+.. code-block:: console
+   :caption: *A basic command to run CATS using wattnet data.*
+
+   $ export CATS_WATTNET_EMAIL=example@example.com
+   $ export CATS_WATTNET_PASSWORD=a-password-for-wattnet
+   $ cats --duration 480 --location GB --api wattnet.eu
+   ...
+
+   The.____ ..... __ .... ________ . ______...
+    .. /  __)...../  \....(__    __).)  ____)....
+    ..|  /......./    \......|  |...(  (___........
+    ..| |limate./  ()  \ware.|  |ask.\___  \cheduler
+    ..|  \__...|   __   |....|  |....____)  )....
+    ...\    )..|  (..)  |....|  |...(      (..
+
+
+    Best job start time                       = 2026-08-28 09:17:29
+    Carbon intensity if job started now       = 146.84 gCO2eq/kWh
+    Carbon intensity at optimal time          = 96.39 gCO2eq/kWh
+
+The best start time from wattnet may not match the best start time from NESO's
+service. All other arguments below are supported by both providers, and it
+may be instructive to plot the forecasts.
+
 Illustration of estimate with ``--plot``
 ----------------------------------------
 

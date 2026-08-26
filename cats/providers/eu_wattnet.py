@@ -87,6 +87,19 @@ class WattnetEuProvider(BaseProvider):
         metric: str | None = None,
         headers: dict[str, str] | None = None,
     ) -> Timeseries:
+        """
+        Get data from the wattnet API
+
+        This method creates a URL for the request in a format that supports
+        caching, deals with the authentication (if needed), gets the data,
+        and converts it into CATS internal data format.
+
+        :param timestamp: Timestamp from which to start forecast data retrieval
+        :param location: Location for which to start forecast data retrieval
+        :param metric: Optional, not supported by this provider
+        :param headers: Optional, if specified, passes additional headers
+        :return: Timeseries as a list of PointEstimate classes
+        """
         location = self.validate_location(location)
         # Sort out the start time for caching
         if timestamp.minute > 45:
@@ -149,6 +162,14 @@ class WattnetEuProvider(BaseProvider):
 
     @override
     def validate_location(self, location: str | None) -> str:
+        """
+        Check that Wattnet location data matches the list of supported locations
+
+        Wattnet uses a set of zones with short names such as 'GB', 'IT_CALABRIA',
+        or 'SE1'. A full list can be found in data/wattnet_zones.txt.
+
+        raises: InvalidLocationError if the location is not provided or matched
+        """
         if location is None:
             raise InvalidLocationError(
                 "Must provide location for WattNet provider"
