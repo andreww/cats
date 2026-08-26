@@ -61,8 +61,8 @@ class BaseProvider(ABC):
 
     BASE_URL: ClassVar[str]
 
-    def __init__(self, api_key: str | None = None, base_url: str | None = None):
-        self.api_key: str | None = api_key
+    def __init__(self, api_data: dict[str, Any] | None = None, base_url: str | None = None):
+        self.api_data: dict[str, Any] | None = api_data
         self.base_url: str = base_url or self.BASE_URL
 
     @abstractmethod

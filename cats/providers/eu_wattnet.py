@@ -49,6 +49,8 @@ class WattnetEuProvider(BaseProvider):
         
         NB: the HTTP calls in this method are not cached.
         """
+        if self.api_data is None:
+            self.api_data = {}
         email = os.environ.get('CATS_WATTNET_EMAIL')
         password = os.environ.get('CATS_WATTNET_PASSWORD')
         if (email is None) or (password is None):
@@ -66,8 +68,8 @@ class WattnetEuProvider(BaseProvider):
                 f"WattNet token request failed with status {response.status_code}"
             )
         result = response.json()
-        self.api_key = result["access_token"]
-        self.token_expires = datetime.datetime.fromisoformat(result["expires_at"])
+        self.api_data['access_token'] = result["access_token"]
+        self.api_data['expires_at'] = datetime.datetime.fromisoformat(result["expires_at"])
 
     @override
     def get_max_duration_minutes(self, metric: str | None = None) -> int:
@@ -112,8 +114,15 @@ class WattnetEuProvider(BaseProvider):
             f"start={start_time.strftime('%Y-%m-%dT%H:%M:%S')}&"
             f"end={end_time.strftime('%Y-%m-%dT%H:%M:%S')}"
         )
-        self.update_authorization_token()
-        headers = {"Authorization": f"Bearer {self.api_key}"}
+
+        # Setup authentication if this has not been done
+        if ((self.api_data is None) or
+            (self.api_data['expires_at'] < datetime.datetime.now())):
+            self.update_authorization_token()
+        assert self.api_data is not None, "Unexpected Wattnet authentication error"
+        headers = {"Authorization": f"Bearer {self.api_data['access_token']}"}
+
+        # Get the data
         response: list | None = fetch_url(url, headers=headers)
 
         # Invalid responses may return empty lists. We've done the useful
