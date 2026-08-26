@@ -116,15 +116,15 @@ class WattnetEuProvider(BaseProvider):
         headers = {"Authorization": f"Bearer {self.api_key}"}
         response: list | None = fetch_url(url, headers=headers)
 
-        assert response is not None, "No response" # To catch failed for typing
-        # We get an empty list back from the JSON and a status of 200 if the location
-        # does not exist (etc.??) Treat this as a "general" error (as we've already
-        # validated the input?)
-        # Needs error handling here!
+        # Invalid responses may return empty lists. We've done the useful
+        # validation already, so just raise an assertion error.
+        assert response is not None, "No response from Wattnet request" # To catch failed for typing
+        assert response, "Empty response from Wattnet request" # empty list is Falsey 
 
         # The "Z" at the end of the format string indicates UTC,
         # however, strptime does not know how to parse this, so we
-        # need to add tzinfo data.
+        # need to add tzinfo data. Extract data and create a Timeserise
+        # of data
         datefmt = "%Y-%m-%dT%H:%M:%SZ"
         utc = ZoneInfo("UTC")
         values = [

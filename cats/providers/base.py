@@ -26,13 +26,33 @@ PROVIDERS: dict[str, type[BaseProvider]] = {}
 
 
 def fetch_url(url: str, headers: dict[str, str] | None = None) -> Any:
+    """
+    Fetch and decode json representation of a provider's forecast data
+
+    The provider is responsible for formatting a `url` which typically includes
+    location, time and format information for the desired forecast. This is
+    either extracted from a cache (if the forecast has been requested before with
+    the same URL) or requested from the provider. The provider can also add `headers`
+    as needed. This function always includes the CATS user_agent in the headers
+    used in the request. Successful responses are cached, decoded from json to 
+    python objects and returned to the provider (which is responsible for extracting
+    the required information). Python objects may be returned as a dictionary, list,
+    etc. depending on the structure of the json. Failed requests may return empty 
+    dictionaries or lists, or may include debugging information. The provider is
+    responsible for checking this.
+
+    :raises requests.exceptions.JSONDecodeError: If the response body does not contain
+            valid json.
+    :raises resqests.excpetions.HTTPError: If the HTTP request fails
+    """
     # Setup a session for the API call. This uses a global HTTP cache
     # with the URL as the key. Failed attempts are not cached.
     session = requests_cache.CachedSession("cats_cache", use_temp=True)
     headers = headers or {}
     headers.update(user_agent)
     response = session.get(url, headers=headers)
-    # Catch errors here too!
+    # Catch and raise any HTTP errors
+    response.raise_for_status()
     return response.json() # pyright: ignore[reportUnknownMemberType]
 
 
