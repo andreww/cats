@@ -36,8 +36,8 @@ def fetch_url(url: str, headers: dict[str, str] | None = None) -> Any:
     as needed. This function always includes the CATS user_agent in the headers
     used in the request. Successful responses are cached, decoded from json to 
     python objects and returned to the provider (which is responsible for extracting
-    the required information). Python objects may be returned as a dictionary, list,
-    etc. depending on the structure of the json. Failed requests may return empty 
+    the required information). Python objects may be returned as a dictionary or a list,
+    depending on the structure of the json. Failed requests may return empty 
     dictionaries or lists, or may include debugging information. The provider is
     responsible for checking this.
 

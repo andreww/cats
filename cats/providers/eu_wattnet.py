@@ -120,7 +120,7 @@ class WattnetEuProvider(BaseProvider):
         # Build URL. Note that because we use timezone aware datetime object
         # (and force them into UTC) .isoformat() adds +00:00 to the end of 
         # the times in the URL. This breaks things. Instead we use strftime 
-        # and check that the timezone offset is 0 as needed
+        # to build the URL and check that the timezone offset is 0 as needed
         assert start_time.utcoffset() == datetime.timedelta(0), "Internal timezone error"
         url = (
             f"{self.base_url}/v1/footprints?"
@@ -134,7 +134,9 @@ class WattnetEuProvider(BaseProvider):
         if ((self.api_data is None) or
             (self.api_data['expires_at'] < datetime.datetime.now())):
             self.update_authorization_token()
-        assert self.api_data is not None, "Unexpected Wattnet authentication error"
+        if ((self.api_data is None) or
+            (self.api_data['expires_at'] < datetime.datetime.now())):
+            raise ProviderAuthenticationError("Unexpected Wattnet authentication error")
         headers = {"Authorization": f"Bearer {self.api_data['access_token']}"}
 
         # Get the data

@@ -48,11 +48,11 @@ Locations outside Great Britain
 The default behavior of CATS is to use carbon intensity forecast data provided
 by the National Energy System Operator (NESO), which manages the electricity grid in 
 Great Britain (Northern Ireland uses a separate grid operating across
-the ireland of Ireland). In order to use CATS for locations across Europe
+the island of Ireland). In order to use CATS for locations across Europe
 it is possible to specify a different experimental data source provided by
 the https://wattnet.eu/ project. This provides data at coarser spatial resolution
 (approximately 60 zones across Europe including one representing Great Britain
-compared to 14 areas provided by by the NESO) but at finer time resolution (15
+compared to 14 areas provided by the NESO) but at finer time resolution (15
 compared to 30 minutes) and for a longer duration (4 days rather than 2 days).
 To use https://wattnet.eu/ the `--location` argument **must** be provided and must be the 
 name of a zone. In addition the `--api` argument needs to have the value "wattnet.eu"
