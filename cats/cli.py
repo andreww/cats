@@ -16,6 +16,7 @@ from .exceptions import (
     MissingArgumentError,
     SchedulerError,
     UnsupportedProviderError,
+    ProviderAuthenticationError,
 )
 from .forecast import WindowedForecast
 from .output import CATSOutput
@@ -204,7 +205,8 @@ def parse_arguments():
         type=str,
         default="carbonintensity.org.uk",
         help="API to use to obtain carbon intensity forecasts. Overrides `config.yml`. "
-        "For now, only choice is `carbonintensity.org.uk` (hence UK only forecasts). "
+        "There is a choice of `carbonintensity.org.uk` (only forecasts in Great Britain)"
+        "or `wattnet.eu` (experimental, for forecasts across Europe). "
         "Default: `carbonintensity.org.uk`.",
     )
     parser.add_argument(
@@ -218,7 +220,8 @@ def parse_arguments():
         "-l",
         "--location",
         type=str,
-        help="Location of the computing facility. For the UK, first half of a postcode (e.g. `M15`), "
+        help="Location of the computing facility with a format that depends on the API used."
+        "For `carbonintensity.org.uk` the first half of a postcode (e.g. `M15`) is used, "
         "for other APIs, see documentation for exact format. Overrides `config.yml`. "
         "Default: if absent, location based in IP address is used.",
     )
@@ -436,6 +439,8 @@ def main(arguments: list[str] | None = None):
         print(f"Invalid location: {e}")
     except UnsupportedProviderError as e:
         print(f"Unsupported provider: {e}")
+    except ProviderAuthenticationError as e:
+        print(f"Failed to authenticate with data provider: {e}")
     except MissingArgumentError as e:
         print(f"One or more arguments missing: {e}")
     except DurationExceedsWindowError as e:

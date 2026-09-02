@@ -9,6 +9,10 @@ class UnsupportedProviderError(Exception):
     "Provider is unsupported"
 
 
+class ProviderAuthenticationError(Exception):
+    "Provider authentication failed"
+
+
 class MissingArgumentError(Exception):
     "One or more required arguments are missing"
 

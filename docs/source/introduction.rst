@@ -24,7 +24,7 @@ to schedule tasks based on the estimated carbon intensity of the
 electricity grid at any given moment.
 
 This tool uses real-time
-carbon intensity data from the `National Grid ESO <NationalGridESO_>`_
+carbon intensity data from sources such as the `National Grid ESO <NationalGridESO_>`_
 via `their API <CarbonIntensityAPI_>`_ to
 estimate the carbon intensity of the electricity grid, and schedules
 tasks at times when the estimated carbon intensity is lowest. This
@@ -36,8 +36,9 @@ environmentally-conscious developers.
 Scope
 -----
 
-Currently CATS only works in the UK. If you are aware of APIs for
-realtime grid carbon intensity data in other countries, please
+Currently CATS only works in the UK with experimental support 
+elsewhere in Europe. If you are aware of APIs for
+realtime grid carbon intensity data in other locations, please
 `open an issue <GitHubrepoissues_>`_ to let us know.
 
 CATS is currently tested with Python versions 3.10-3.14 running

@@ -77,10 +77,15 @@ in Great Britain, weather forecasts and historical generation data. A brief over
 methodology can be found in :cite:t:`Bruce21a` and :cite:t:`Bruce21b` and the forecast, in the form of estimated carbon 
 intensity at the end of each half hour period, is available via a web API 
 (https://carbonintensity.org.uk/). CATS caches requests for this data to avoid repeated requests 
-within the thirty-minute time frame of a single forecast. We have designed CATS in a modular way to 
-enable future integration of other countries' APIs in a straightforward manner. However, to date, we 
-are unaware of any publicly accessible forecasts of carbon intensity for other regional, national or 
-transnational electricity distribution networks.
+within the thirty-minute time frame of a single forecast.
+
+We have designed CATS in a modular way to enable future integration of other APIs in a
+straightforward manner and also currently support the experimental API provided by the 
+https://wattnet.eu/ project for locations across Europe. We note that this API requires
+authentication and for users to register an email address and obtain a password. The wattnet.eu
+API provides data for about 60 zones across Europe (inside and outside the EU) with 96 hour
+forecasts broken down into 15 minute periods. New APIs can be added by creating new implementations
+of the `cats.providers.BaseProvider` abstract base class and registering these as documented elsewhere. 
 
 With the carbon intensity forecast and duration of the proposed computation in hand, the next task 
 is to locate the start time (within the valid forecast period) that minimises the integrated carbon 

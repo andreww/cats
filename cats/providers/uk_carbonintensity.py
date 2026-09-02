@@ -28,6 +28,14 @@ UK_OUTCODES: set[str] = set(
 
 @provider("carbonintensity.org.uk")
 class UKCarbonIntensityProvider(BaseProvider):
+    """
+    Default provider for the National Energy System Operator's carbonintensity.org.uk API
+
+    The service covers most of Great Britain with the location specified using a the first part
+    of a UK postcode. This relates to one of 14 areas forming the GB grid which each have their own
+    carbon intensity forecast. Data has 30 minute resolution and extends 2 days into the future. No
+    authentication is needed.
+    """
     BASE_URL: ClassVar[str] = "https://api.carbonintensity.org.uk"
 
     @override
