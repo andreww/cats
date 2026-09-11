@@ -7,10 +7,15 @@ Contributing
 
 First off, thanks for taking the time to contribute!
 
-All types of contributions are encouraged and valued. See the below for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. All contributors are expected to abide by our code of conduct (see CODE_OF_CONDUCT.md in the repository). 
+All types of contributions are encouraged and valued. See the below for different ways to help and details about 
+how this project handles them. Please make sure to read the relevant section before making your contribution. It 
+will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks 
+forward to your contributions. All contributors are expected to abide by our code of conduct (see 
+`CODE_OF_CONDUCT.md <https://github.com/GreenScheduler/cats/blob/main/CODE_OF_CONDUCT.md>`__ in the repository). 
 
 .. NOTE::
-  And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about.
+  And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways 
+  to support the project and show your appreciation, which we would also be very happy about.
   These include staring the project, writing about the project, referring to this project in your project's readme,
   mentioning the project at local meetups, and telling your friends/colleagues.
 
@@ -21,7 +26,9 @@ I Have a Question
 .. NOTE::
   If you want to ask a question, we assume that you have read the available documentation (at https://cats.readthedocs.io/).
 
-Before you ask a question, it is best to search for existing issues (see https://github.com/GreenScheduler/cats/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
+Before you ask a question, it is best to search for `existing issues <https://github.com/GreenScheduler/cats/issues>`__ 
+that might help you. In case you have found a suitable issue and still need clarification, you can write your question 
+in this issue. It is also advisable to search the internet for answers first.
 
 If you then still feel the need to ask a question and need clarification, we recommend the following:
 
@@ -33,19 +40,15 @@ If you then still feel the need to ask a question and need clarification, we rec
 We will then take care of the issue as soon as possible. 
 
 
-I Want To Contribute
---------------------
-
-.. NOTE::
-  When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project licence.
-
 Reporting Bugs
 --------------
 
 Before Submitting a Bug Report
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as easily as possible.
+A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to
+investigate carefully, collect information and describe the issue in detail in your report. Please complete the
+following steps in advance to help us fix any potential bug as easily as possible.
 
 * Make sure that you are using the latest version.
 * Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions. Make sure that you have read the documentation at https://cats.readthedocs.io/). If you are looking for support, you might want to check the section above.
@@ -103,60 +106,20 @@ Enhancement suggestions are tracked as GitHub issues (https://github.com/GreenSc
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
 * **Explain why this enhancement would be useful** to most cats users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
 
+
+I Want To Contribute
+--------------------
+
+.. NOTE::
+  When contributing to this project, you must agree that you have authored 100% of the content, that you have the 
+  necessary rights to the content and that the content you contribute may be provided under the project licence.
+
 Contributing code or documentation
 ----------------------------------
 
-We also welcome contributions in the form of improvements to the code or documentation. Information to help make this process as smooth as possible is below.
+We also welcome contributions in the form of improvements to the code or documentation. 
+Information to help make this process as smooth as possible can be found in the :ref:`devguide`.
 
-Adding a feature / making a change
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ideally, all significant changes would be discussed in an issue as outlined above before 
-time is spent writing code (see asking questions, reporting bugs, and suggesting enhancements),
-but however changes are made we would like them to be fed into the CATS code via a pull 
-request against the ``main`` branch on github. These pull requests should 
-outline the reason for the change,
-reference any previous discussion, and note any significant issues that may need 
-further consideration. A maintainer with write access to the main 
-CATS repository who has not been directly involved in
-writing the new code or documentation will need to review the pull request prior to merging. 
-
-We do not have a formal style guide, but code changes and additions should seek to follow the style 
-established by the existing CATS codebase. CATS has a fairly comprehensive test suite that runs
-automatically against all pull requests and new code should either come with new tests or with an
-explanation about why tests for the new code are not included. Please indicate where changes to 
-behavior have been made (especially where this means changes to the tests have also been needed).  
-CATS includes documentation which should be updated by the pull requests making changes to the
-code (although documentation only pull requests are welcome). Some of this documentation is
-automatically generated (from doc strings and help text for command line tools) so please make
-sure that this internal documentation is up to date.
-
-Testing can also be undertaken in an isolated environment prior to making a pull request and this
-can make code development significantly easer. We run tests using ``flake8`` for basic linting,
-``pytest`` for the majority of unit and integration tests, and ``mypy`` to check type annotations
-and for the static analysis this permits. In a checked out copy of the source, the following installs
-the prerequisites and runs all tests::
-
-  python3 -m pip install '.[test]'
-  python3 -m pip install flake8
-  python3 -m pip install '.[types]'
-  flake8 . --count --select=E9,F63,F7,F82 --show-source
-  python3 -m mypy cats
-  python3 -m pytest
-
-A new build incorporating any updates to the documentation is automatically generated for each PR
-and will become available from a link within the pull request. 
-
-Making a new release
-^^^^^^^^^^^^^^^^^^^^
-
-Those of us with commit access to the main CATS repository on GitHub are able to generate a new release and publish this to PyPI. This
-should be discussed ahead of time (via a PR changing the version string, see 1 below) and once broad agreement is in place a release can be created as follows:
-
- 1. Merge a pull request onto main that updates the CATS version number ``__version__`` in ``__init__.py`` and adds any release notes / key changes to the documentation. We use a "major.minor.patch" semantic versioning scheme; for bug fixes etc. bump the patch number, for significant new features bump the minor version number, for changes that break previous behavior update the major version number.
- 2. Check that all tests have passed after the merge and that the "latest" documentation at read the docs is updated.
- 3. Create a release via the GitHub web interface. This involves creating a new tag ("v1.2.3" for version "1.2.3"), giving the release a name (just "1.2.3"), and adding short release notes using markdown as needed. Make sure this is "set as the latest release".
- 4. After a short time you should be able to check that the new release exists on PyPI and is documented in the stable docs on read the docs.   
 
 Attribution
 -----------
