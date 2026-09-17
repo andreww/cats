@@ -1,7 +1,5 @@
 .. _contributing:
 
-.. _GitHubrepo: https://github.com/GreenScheduler/cats
-
 Contributing
 ============
 
