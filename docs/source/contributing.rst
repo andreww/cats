@@ -9,7 +9,7 @@ First off, thanks for taking the time to contribute!
 
 All types of contributions are encouraged and valued. See the below for different ways to help and details about 
 how this project handles them. Please make sure to read the relevant section before making your contribution. It 
-will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks 
+will make it a lot easier for maintainers and smooth out the experience for all involved. The community looks 
 forward to your contributions. All contributors are expected to abide by our code of conduct (see 
 `CODE_OF_CONDUCT.md <https://github.com/GreenScheduler/cats/blob/main/CODE_OF_CONDUCT.md>`__ in the repository). 
 
@@ -19,6 +19,10 @@ forward to your contributions. All contributors are expected to abide by our cod
   These include staring the project, writing about the project, referring to this project in your project's readme,
   mentioning the project at local meetups, and telling your friends/colleagues.
 
+We have split the documentation and information about contributing to CATS into three pages. On this page you will find information
+mostly focussing on contributions from users (things like how to report bugs or suggest ideas). We also have a :ref:`devguide`,
+which mostly focusses on how to contribute code to CATS, and a :ref:`maintenanceguide` which focusses on tools for maintainers
+(e.g. creating a new release).
 
 I Have a Question
 -----------------
@@ -88,7 +92,7 @@ Suggesting Enhancements
 
 This section guides you through submitting an enhancement suggestion for cats, **including completely new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community to understand your suggestion and find related suggestions.
 
-Before Submitting an Enhancement
+Before Suggesting an Enhancement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Make sure that you are using the latest version.
@@ -106,13 +110,6 @@ Enhancement suggestions are tracked as GitHub issues (https://github.com/GreenSc
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
 * **Explain why this enhancement would be useful** to most cats users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
 
-
-I Want To Contribute
---------------------
-
-.. NOTE::
-  When contributing to this project, you must agree that you have authored 100% of the content, that you have the 
-  necessary rights to the content and that the content you contribute may be provided under the project licence.
 
 Contributing code or documentation
 ----------------------------------

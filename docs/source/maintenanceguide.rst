@@ -3,6 +3,14 @@
 Maintainer's guide
 ==================
 
+Cover who is a maintainer
+How we add / remove maintainers
+How to review
+
+
+Developer how-to guide
+------------------------
+
 Making a new release
 ^^^^^^^^^^^^^^^^^^^^
 

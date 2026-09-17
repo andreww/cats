@@ -3,18 +3,53 @@
 Developer's guide
 =================
 
+We have split the documentation and information about contributing to CATS into three pages. On this 
+page you will find information mostly focussing on how to contribute code to CATS. We also have a guide to 
+:ref:`contributing` ideas, questions and bug reports as well as a :ref:`maintenanceguide` which focusses on
+tips and tools for maintainers (e.g. creating a new release).
+
+I Want To Contribute
+--------------------
+
+We are looking for contributions that improve the functionality of CATS, help enhance the community of developers and users
+of CATS, and allow the long-term stability of the CATS project. We have developed the guidance below with these aims in
+mind. 
+
+.. NOTE::
+  When contributing to this project, you must agree that you have authored 100% of the content, that you have the 
+  necessary rights to the content and that the content you contribute may be provided under the project licence.
+  All contributors are expected to abide by our code of conduct (see
+  `CODE_OF_CONDUCT.md <https://github.com/GreenScheduler/cats/blob/main/CODE_OF_CONDUCT.md>`__ in the repository)
+  and to disclose the use of AI tools.
+
 Adding a feature / making a change
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ideally, all significant changes would be discussed in an issue as outlined above before 
-time is spent writing code (see asking questions, reporting bugs, and suggesting enhancements),
-but however changes are made we would like them to be fed into the CATS code via a pull 
+All significant changes should be discussed in an issue (as outlined in :ref:`contributing`) before 
+time is spent writing code,
+and we would like changes to be fed into the CATS code via a pull 
 request against the ``main`` branch on github. These pull requests should 
 outline the reason for the change,
 reference any previous discussion, and note any significant issues that may need 
 further consideration. A maintainer with write access to the main 
 CATS repository who has not been directly involved in
-writing the new code or documentation will need to review the pull request prior to merging. 
+writing the new code or documentation will need to review the pull request
+(see :ref:`maintenanceguide`) prior to merging.
+
+Pull requests should also:
+
+1. Include confirmation that the named author(s) are able to assert copyright, legal, and moral ownership
+on their contribution. Because contributors to CATS do not assign copyright this important to protect the
+distribution.
+2. Agree to release their contribution under the
+`MIT license <https://github.com/GreenScheduler/cats/blob/main/LICENSE>`__. 
+3. Are willing and able to discuss their proposed contribution in a constructive way with reviewers.
+4. Disclosure of any use of AI tools as described in the AI use policy below.
+
+We have set up pull request templates to remind contributors to check these items.
+
+Code style
+^^^^^^^^^^
 
 We do not have a formal style guide, but code changes and additions should seek to follow the style 
 established by the existing CATS codebase. CATS has a fairly comprehensive test suite that runs
@@ -25,6 +60,9 @@ CATS includes documentation which should be updated by the pull requests making 
 code (although documentation only pull requests are welcome). Some of this documentation is
 automatically generated (from doc strings and help text for command line tools) so please make
 sure that this internal documentation is up to date.
+
+Tests
+^^^^^
 
 Testing can also be undertaken in an isolated environment prior to making a pull request and this
 can make code development significantly easer. We run tests using ``flake8`` for basic linting,
@@ -41,3 +79,12 @@ the prerequisites and runs all tests::
 
 A new build incorporating any updates to the documentation is automatically generated for each PR
 and will become available from a link within the pull request. 
+
+AI policy
+^^^^^^^^^
+
+Contributor how-to guide
+------------------------
+
+Adding a data provider 
+^^^^^^^^^^^^^^^^^^^^^^
