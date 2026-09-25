@@ -55,12 +55,12 @@ following steps in advance to help us fix any potential bug as easily as possibl
 * Make sure that you are using the latest version.
 * Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions. Make sure that you have read the documentation at https://cats.readthedocs.io/). If you are looking for support, you might want to check the section above.
 * To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the bug tracker (see https://github.com/GreenScheduler/cats/issues?q=label%3Abug).
-* Also make sure to search the internet (including Stack Overflow) to see if users outside of the GitHub community have discussed the issue.
+* Also make sure to search the internet to see if users outside of the GitHub community have discussed the issue.
 * Collect information about the bug:
 
   * OS, Platform and Version (Windows, Linux, macOS, x86, ARM)
   * Version of python and your python environment, package manager, and how you installed CATS.
-  * Possibly your input and the output
+  * Your full input and all of the output
   * Can you reliably reproduce the issue? And can you also reproduce it with older versions?
 
 
@@ -82,13 +82,18 @@ Once it's filed:
 
 * The project team will label the issue accordingly.
 * A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` tag will not be addressed until they are reproduced.
-* If the team is able to reproduce the issue, it will be marked `needs-fix`, as well as possibly other tags (such as `critical`), and the issue will be left to be [implemented by someone](#your-first-code-contribution).
+* If the team is able to reproduce the issue, it will be marked 
+  `needs-fix`, as well as possibly other tags (such as `critical`), and the issue will 
+  be left to be fixed by someone (see the :ref:`devguide`).
 
 
 Suggesting Enhancements
 -----------------------
 
-This section guides you through submitting an enhancement suggestion for cats, **including completely new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community to understand your suggestion and find related suggestions.
+This section guides you through submitting an enhancement suggestion for cats, 
+**including completely new features and minor improvements to existing functionality**. 
+Following these guidelines will help maintainers and the community to understand your 
+suggestion and find related suggestions.
 
 Before Suggesting an Enhancement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
