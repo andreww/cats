@@ -156,7 +156,7 @@ of the forecast and the frequency of data points, issues around authentication a
 best way to encode and validate location information. Much of the work belongs in the ``get_data()`` method
 which typically builds a request URL (including suitably aligned time and location information), uses the ``fetch_url()`` function
 from ``cats/providers/base.py`` to download the data and convert JSON to python objects, and then places this
-data in ``Timeseries`` of ``PointEstimate``s, which are returned.
+data in ``Timeseries`` of ``PointEstimate`` objects, which are returned.
 
 New providers should be listed in ``cats/providers/__init__.py`` and registered using the ``@provider`` decorator
 (the argument of this decorator is used to allow the user to select the provider). Tests should be included. 
